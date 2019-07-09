@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import dynamic from 'next/dynamic';
+import InView from '../components/InView';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Cards from '../components/Cards';
-import Health from '../components/Health';
+
+const Health = dynamic(import('../components/Health'));
 
 const Home = () => (
   <>
@@ -11,7 +14,9 @@ const Home = () => (
     <div className="container">
       <Hero />
       <Cards />
-      <Health />
+      <InView>
+        <Health />
+      </InView>
     </div>
   </>
 );
