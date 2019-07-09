@@ -7,7 +7,7 @@ const HealthCard = ({
   subtitle,
   image,
 }) => (
-  <div className="col-sm">
+  <div className="col-sm" key={title}>
     <div className="TempoCategoryTile  u-focusTile">
       <div className="TempoCategoryTile-tile valign-top">
         <div className="TempoCategoryTile-imgContainer" aria-hidden="true">

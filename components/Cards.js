@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import Card from './Card';
@@ -50,7 +51,7 @@ const CATEGORIES = [
 ];
 
 const Row = ({ row }) => row.map(cardProps => (
-  <div className="col-sm">
+  <div className="col-sm" key={cardProps.title}>
     <Card {...cardProps} />
   </div>
 ));
@@ -58,8 +59,8 @@ const Row = ({ row }) => row.map(cardProps => (
 const Cards = () => (
   <>
     <h2 className="text-center">Shop by Categories</h2>
-    {CATEGORIES.map(row => (
-      <div className="row">
+    {CATEGORIES.map((row, index) => (
+      <div className="row" key={index}>
         <Row row={row} />
       </div>
     ))}
