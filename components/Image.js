@@ -8,14 +8,22 @@ export const getSize = ({
   isMobile,
   isTablet,
 }) => {
-  // let currentSize = sizes[sizes.length-1];
-  if(isMobile && !isTablet)
-      return sizes[0]
-  if (isTablet)
-      return sizes[1]
-  else
-      return sizes[sizes.length-1];
-}
+  const [
+    mobileSize,
+    tabletSize,
+    desktopSize,
+  ] = sizes || [];
+
+  if (!isMobile && !isTablet) {
+    return desktopSize || tabletSize || mobileSize;
+  }
+
+  if (isTablet) {
+    return tabletSize || mobileSize;
+  }
+
+  return mobileSize;
+};
 
 const Image = ({
   alt,

@@ -1,0 +1,17 @@
+$red: #ff0000;
+
+.container {
+  background: $red;
+
+  &Mono {
+    margin: 0 auto;
+  }
+}
+
+.containerSub {
+  background: green;
+}
+
+.container {
+  margin-top: '10px';
+}
