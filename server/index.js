@@ -1,6 +1,7 @@
 const express = require('express');
 const next = require('next');
 const compression = require('compression');
+const useragent = require('express-useragent');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -13,6 +14,16 @@ app.prepare()
 
     // Enable text compression
     server.use(compression());
+    server.use((req, res, nextMid) => {
+      const source = req.headers['user-agent'];
+      const userAgent = useragent.parse(source);
+      req.client = {
+        isMobile: userAgent.isMobile,
+        isTablet: userAgent.isTablet,
+      };
+
+      nextMid();
+    });
 
     server.get('*', (req, res) => handle(req, res));
 

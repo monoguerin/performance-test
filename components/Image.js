@@ -1,5 +1,21 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useContext } from 'react';
+import DeviceContext from '../contexts/DeviceContext';
+
+// sizes = [123, 234, 233];
+export const getSize = ({
+  sizes,
+  isMobile,
+  isTablet,
+}) => {
+  // let currentSize = sizes[sizes.length-1];
+  if(isMobile && !isTablet)
+      return sizes[0]
+  if (isTablet)
+      return sizes[1]
+  else
+      return sizes[sizes.length-1];
+}
 
 const Image = ({
   alt,
@@ -7,7 +23,16 @@ const Image = ({
   sizes,
   ...props
 }) => {
-  const [size] = sizes;
+  const {
+    isMobile,
+    isTablet,
+  } = useContext(DeviceContext);
+
+  const size = getSize({
+    sizes,
+    isMobile,
+    isTablet,
+  });
   const src = `${imageUrl}?odnWidth=${size}`;
 
   return (
